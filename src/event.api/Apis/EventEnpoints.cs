@@ -59,9 +59,14 @@ public static class EventEnpoints
 
     private static async Task<IResult> GetById([FromServices] IEventRepository repository, [FromRoute] Guid id)
     {
-        var result = await repository.GetById(id);
-        if (result == null)
-            return Results.NotFound("Cannot found");
-        return Results.Ok(result);
+        try
+        {
+            var result = await repository.GetById(id);
+            return Results.Ok(result);
+        }
+        catch (EventNotFound e)
+        {
+            return Results.BadRequest(e.Message);
+        }
     }
 }
