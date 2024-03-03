@@ -78,6 +78,19 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IConfiguration
                     Guid.Parse("d370967c-3da8-45f5-8890-bff9669c8a1d")
                 ),
 
+                new Event(
+                    Guid.Parse("60d59b4c-7672-403e-860c-e6acf8c80931"),
+                    "Cambodia Tech Summit 2024",
+                    "An annual tech summit aimed at bringing together tech enthusiasts, startups, and industry experts to discuss the latest trends and innovations in the Cambodian tech ecosystem.",
+                    Guid.NewGuid(),
+                    Guid.NewGuid(),
+                    130,
+                    new DateOnly(2024, 4, 21),
+                    new DateOnly(2024, 4, 21),
+                    Guid.Parse("322f5cca-291e-4bdc-9ae4-cd11317f2712"),
+                    Guid.Parse("d370967c-3da8-45f5-8890-bff9669c8a1d")
+                ),
+
                 // new Event(
                 //     Guid.NewGuid(),
                 //     "Cambodia Tech Summit 2024",
@@ -111,6 +124,26 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IConfiguration
                     Guid.NewGuid(),
                     Guid.Parse("bc66aaec-36f2-4207-9962-45a2dadd93a3"),
                     new DateOnly(2024, 3, 21),
+                    new TimeOnly(14, 0),
+                    new TimeOnly(16, 0)
+                ),
+                new Session(
+                   "Tech Startup Panel",
+                "Panel discussion featuring successful Cambodian startup founders sharing their journey, challenges, and insights.",
+                    Guid.NewGuid(),
+                    Guid.NewGuid(),
+                    Guid.Parse("60d59b4c-7672-403e-860c-e6acf8c80931"),
+                    new DateOnly(2024, 4, 21),
+                    new TimeOnly(9, 0),
+                    new TimeOnly(11, 0)
+                ),
+                new Session(
+                    "AI and Machine Learning Workshop",
+                "Hands-on workshop exploring AI and machine learning concepts and applications, tailored for beginners and enthusiasts.",
+                    Guid.NewGuid(),
+                    Guid.NewGuid(),
+                    Guid.Parse("60d59b4c-7672-403e-860c-e6acf8c80931"),
+                    new DateOnly(2024, 4, 21),
                     new TimeOnly(14, 0),
                     new TimeOnly(16, 0)
                 ),
