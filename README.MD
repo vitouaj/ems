@@ -1,3 +1,8 @@
+### Figma
+1. View Figma proto type via  [https://shorturl.at/dizW7](https://shorturl.at/dizW7)
+
+### Installation
+
 _Below is how you setup development._
 
 1. Clone the repo
