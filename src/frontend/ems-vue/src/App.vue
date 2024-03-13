@@ -17,7 +17,7 @@ import { RouterLink, RouterView } from 'vue-router'
       </nav>
 
 
-      <v-card text="..." variant="outlined"></v-card>
+      <v-card text="this is some random text" variant="outlined"></v-card>
     </div>
   </header>
 
