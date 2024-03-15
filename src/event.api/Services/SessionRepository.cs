@@ -25,7 +25,7 @@ public class SessionRepository(AppDbContext db, ILogger<SessionDto> logger, IMap
     public async Task<object?> Create(SessionDto sessionToCreate)
     {
        if (sessionToCreate == null)
-            return null;
+            throw new ArgumentNullException("SessionToCreate is nulll");
         try
         {
             _mapper = GetConfiguredMapper();
@@ -38,7 +38,7 @@ public class SessionRepository(AppDbContext db, ILogger<SessionDto> logger, IMap
         catch (Exception e)
         {
             _logger.LogInformation(e.Message);
-            return null;
+            throw;
         }
     }
 

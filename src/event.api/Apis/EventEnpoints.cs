@@ -50,10 +50,13 @@ public static class EventEnpoints
 
     private static async Task<IResult> CreateNewEvent([FromServices] IEventRepository repository, [FromBody] EventDto eventDto)
     {
-        var newEvent = await repository.Create(eventDto);
-        if (newEvent == null)
-            return Results.BadRequest(new EventResponse(false, "failed to create event", null));
-        return Results.Created("/event", new EventResponse(true, "Success", newEvent));
+        try {
+            var newEvent = await repository.Create(eventDto);
+            return Results.Created("/event", new EventResponse(true, "Success", newEvent));
+
+        } catch (Exception e) {
+            return Results.BadRequest(new EventResponse(false, e.Message, null));
+        }
     }
 
     private static async Task<IResult> GetById([FromServices] IEventRepository repository, [FromRoute] Guid id)

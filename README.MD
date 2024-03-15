@@ -23,3 +23,8 @@ _Below is how you setup development._
    npm build
    npm run dev
    ````
+
+
+### Version 2 Planning
+
+1. Change Implementation of Guid to Manageble Id like "E-20239023" from datetime.

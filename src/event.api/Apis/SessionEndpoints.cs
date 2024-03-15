@@ -50,10 +50,12 @@ public static class SessionEndpoints
 
     private static async Task<IResult> CreateNewSession([FromServices] ISessionRepository repository, [FromBody] SessionDto sessionToCreate)
     {
-        var newSession = await repository.Create(sessionToCreate);
-        if (newSession == null)
-            return Results.BadRequest(new SessionResponse(false, "failed to create session", null));
-        return Results.Created("/session/", new SessionResponse(true, "Success", newSession));
+        try {
+            var newSession = await repository.Create(sessionToCreate);
+            return Results.Created("/session/", new SessionResponse(true, "Success", newSession));
+        } catch (Exception e) {
+            return Results.BadRequest(new SessionResponse(false, e.Message, null));
+        }
     }
 
     private static async Task<IResult> GetById([FromServices] ISessionRepository repository, [FromRoute] Guid eventId, Guid sessionId)
