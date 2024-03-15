@@ -14,7 +14,6 @@ public static class EventEnpoints
         app.MapDelete("/{id}", Delete);
         app.MapPost("/", CreateNewEvent);
         app.MapPut("/", Update);
-
     }
 
     private static async Task<IResult> Delete(IEventRepository repository, Guid id)
@@ -44,9 +43,9 @@ public static class EventEnpoints
         }
     }
 
-    private static async Task<IResult> GetAll(IEventRepository repository)
+    private static async Task<IResult> GetAll(IEventRepository repository, PaginationRequest request)
     {
-        return Results.Ok(await repository.GetAll());
+        return Results.Ok(await repository.GetAll(request));
     }
 
     private static async Task<IResult> CreateNewEvent([FromServices] IEventRepository repository, [FromBody] EventDto eventDto)

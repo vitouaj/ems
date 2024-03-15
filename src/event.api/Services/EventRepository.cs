@@ -51,7 +51,7 @@ public class EventRepository(IMapper mapper, ILogger<Event> logger, AppDbContext
         return true;
     }
 
-    public async Task<List<object>?> GetAll()
+    public async Task<List<object>?> GetAll(PaginationRequest request)
     {
         var events = await _db.Events
             .Include(e => e.Sessions)
@@ -89,6 +89,8 @@ public class EventRepository(IMapper mapper, ILogger<Event> logger, AppDbContext
                     s.UpdatedAt
                 }).ToList()
             })
+            .Skip(request.NumberOfItems * request.PageNumber)
+            .Take(request.NumberOfItems)
             .ToListAsync();
 
         var eventsAsObjects = events.Select(e => (object)e).ToList();
