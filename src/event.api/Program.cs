@@ -18,4 +18,8 @@ app.MapGroup("/api/v1/event")
     .WithTags("Event Resource")
     .MapEventEndpoints();
 
+app.MapGroup("/api/v1/session")
+    .WithTags("Session Resource")
+    .MapSessionEndpoint();
+
 app.Run();

@@ -9,7 +9,7 @@ public static class EventEnpoints
 {
     public static void MapEventEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/", GetAll);
+        app.MapGet("/{pageSize}/{pageIndex}", GetAll);
         app.MapGet("/{id}", GetById);
         app.MapDelete("/{id}", Delete);
         app.MapPost("/", CreateNewEvent);
@@ -43,9 +43,9 @@ public static class EventEnpoints
         }
     }
 
-    private static async Task<IResult> GetAll(IEventRepository repository, PaginationRequest request)
+    private static async Task<IResult> GetAll([FromServices] IEventRepository repository, int pageSize = 10, int pageIndex = 1)
     {
-        return Results.Ok(await repository.GetAll(request));
+        return Results.Ok(await repository.GetAll(pageSize, pageIndex));
     }
 
     private static async Task<IResult> CreateNewEvent([FromServices] IEventRepository repository, [FromBody] EventDto eventDto)

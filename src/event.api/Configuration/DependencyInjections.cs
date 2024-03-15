@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EventAPI.Abstactions;
 using EventAPI.Data;
 using EventAPI.Models;
 using EventAPI.Services;
@@ -19,7 +20,7 @@ public static class DependencyInjections
         services.AddAutoMapper(typeof(DependencyInjections));
 
         services.AddScoped<IEventRepository, EventRepository>();
-
+        services.AddScoped<ISessionRepository, SessionRepository>();
 
         return services;
     }

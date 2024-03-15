@@ -8,5 +8,5 @@ public interface IEventRepository
     Task<object?> Create(EventDto eventDto);
     Task<object?> Update(Guid id, EventDto eventDto);
     Task<bool> Delete(Guid id);
-    Task<List<object>?> GetAll(PaginationRequest request);
+    Task<List<object>?> GetAll(int pageSize, int pageIndex);
 }
