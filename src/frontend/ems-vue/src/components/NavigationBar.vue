@@ -11,6 +11,7 @@
 </script>
 
 <template>
+  <div>
     <nav>
       <div class="logo">
         <img src="" alt="logo" />
@@ -52,6 +53,7 @@
         </li>
       </ul>
     </div>
+  </div>
 </template>
 
 
