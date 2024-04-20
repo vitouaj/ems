@@ -9,9 +9,14 @@ const router = createRouter({
       component: () => import('../views/LandingPageView.vue')
     },
     {
-      path: '/auth',
-      name: 'auth',
-      component: () => import('../AuthForm/AuthScreen.vue')
+      path: '/authUser',
+      name: 'authUser',
+      component: () => import('../AuthForm/User/AuthUserScreen.vue')
+    },
+    {
+      path: '/authAdmin',
+      name: 'authAdmin',
+      component: () => import('../AuthForm/Admin/AuthAdminScreen.vue')
     },
 
     // {

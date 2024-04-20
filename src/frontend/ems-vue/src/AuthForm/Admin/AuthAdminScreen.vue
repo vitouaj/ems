@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Im admin.</h1>
     <form v-if="mode === 'login'" @submit.prevent="login">
       <input type="email" v-model="loginData.email" placeholder="Email" required>
       <input type="password" v-model="loginData.password" placeholder="Password" required>
