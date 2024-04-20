@@ -38,7 +38,13 @@
               required
             />
           </div>
-          <a href="#" class="forgot-password">Forget your password</a>
+          <div class="forgot-remember-container">
+            <a href="#" class="forgot-password">Forget your password</a>
+            <div class="checkbox">
+              <input type="checkbox" id="rememberMe" v-model="rememberMe" />
+              <label for="rememberMe">Remember me</label>
+            </div>
+          </div>
           <ButtonCard type="submit" class="ButtonCard">Log In</ButtonCard>
         </form>
         <p class="center">
@@ -46,7 +52,9 @@
         </p>
       </template>
       <template v-else>
-        <span>Register a new account</span>
+        <div class="center">
+          <span>Register a new account</span>
+        </div>
         <form @submit.prevent="signup">
           <div class="form-group">
             <TextField id="name" label="Full Name" v-model="signupData.name" required />
@@ -78,6 +86,16 @@
               required
             />
           </div>
+          <div class="checkbox">
+            <input type="checkbox" id="register" v-model="register" />
+            <label for="register">Register an event organizer</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="terms" v-model="terms" />
+            <label for="terms"
+              >I agree to the term <a href="#" style="bold">Eventhub</a></label
+            >
+          </div>
           <div>
             <ButtonCard type="submit" class="ButtonCard">Sign Up</ButtonCard>
           </div>
@@ -107,6 +125,9 @@ const signupData = ref({
   phoneNumber: "",
   password: "",
 });
+const rememberMe = ref(false);
+const register = ref(false);
+const terms = ref(false);
 
 const login = () => {
   // Your login logic here
@@ -125,7 +146,6 @@ const toggleMode = () => {
 .center-container {
   background-image: url("@/assets/background.jpg");
   display: flex;
-  justify-content: center;
   align-items: center;
   height: 100vh;
 }
@@ -134,7 +154,8 @@ const toggleMode = () => {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 30px;
   margin: 20px auto;
-  max-width: 1000px;
+  width: 30%;
+  color: #004b8d;
 }
 
 .form-row {
@@ -160,7 +181,7 @@ const toggleMode = () => {
 }
 
 .ButtonCard {
-  background-color: #2c64fc;
+  background-color: #6f6fdcd0;
   color: white;
   border: none;
   border-radius: 50px;
@@ -168,17 +189,23 @@ const toggleMode = () => {
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
 }
 
 .ButtonCard:hover {
-  background-color: #1f1f1f;
+  background-color: #ffa500;
 }
 
 .forgot-password {
   display: block;
   margin-top: 10px;
-  color: #2c64fc;
+  color: #004b8d;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .forgot-password:hover {
@@ -186,11 +213,11 @@ const toggleMode = () => {
 }
 
 .Event {
-  color: orange;
+  color: #004b8d;
 }
 
 .Hub {
-  color: blue;
+  color: #ffa500;
 }
 
 .title {
@@ -201,6 +228,21 @@ const toggleMode = () => {
 
 .center {
   text-align: center;
+  font-size: 18px;
+}
+
+.forgot-remember-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  color: #004b8d;
+  font-size: 15px;
 }
 </style>
 @/components/emsTextfield.vue
