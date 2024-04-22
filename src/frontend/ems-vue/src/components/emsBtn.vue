@@ -1,29 +1,27 @@
 <template>
-  <button @click="handleClick" :class="{ 'active': isActive }">
+  <button @click="handleClick" :class="{ active: isActive }">
     <slot></slot>
   </button>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
-  name: 'DefaultButton',
+  name: "DefaultButton",
   setup() {
     const isActive = ref(false);
 
     const handleClick = () => {
       isActive.value = !isActive.value;
-      // You can add more logic here
     };
 
     return { isActive, handleClick };
-  }
+  },
 });
 </script>
 
 <style scoped>
-/* Add your button styles here */
 button {
   background-color: #2c64fc;
   color: white;
@@ -39,6 +37,5 @@ button:hover {
 }
 
 .active {
-  /* Add your active button styles here */
 }
 </style>

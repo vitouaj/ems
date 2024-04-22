@@ -73,7 +73,9 @@
               id="password"
               label="Password"
               v-model="signupData.password"
-              type="password"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="showPassword = !showPassword"
+              :type="showPassword ? 'text' : 'password'"
               required
             />
           </div>
@@ -114,7 +116,7 @@ import Card from "@/components/emsCard.vue";
 import TextField from "@/components/emsTextfield.vue";
 import ButtonCard from "@/components/emsCard.vue";
 
-const mode = ref("login"); // Default mode is login
+const mode = ref("login");
 const loginData = ref({
   email: "",
   password: "",
@@ -124,18 +126,15 @@ const signupData = ref({
   email: "",
   phoneNumber: "",
   password: "",
+  showPassword: false,
 });
 const rememberMe = ref(false);
 const register = ref(false);
 const terms = ref(false);
 
-const login = () => {
-  // Your login logic here
-};
+const login = () => {};
 
-const signup = () => {
-  // Your signup logic here
-};
+const signup = () => {};
 
 const toggleMode = () => {
   mode.value = mode.value === "login" ? "signup" : "login";
