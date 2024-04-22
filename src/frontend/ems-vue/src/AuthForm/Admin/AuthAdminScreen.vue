@@ -80,7 +80,9 @@
                   id="password"
                   label="Password"
                   v-model="signupData.password"
-                  type="password"
+                  :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="showPassword = !showPassword"
+                  :type="showPassword ? 'text' : 'password'"
                   required
                 />
               </div>
@@ -89,7 +91,9 @@
                   id="confirm-password"
                   label="Confirm Password"
                   v-model="signupData.password"
-                  type="password"
+                  :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append="showPassword = !showPassword"
+                  :type="showPassword ? 'text' : 'password'"
                   required
                 />
               </div>
@@ -158,6 +162,7 @@ const signupData = ref({
 const rememberMe = ref(false);
 const register = ref(false);
 const terms = ref(false);
+const showPassword = ref(false);
 
 const login = () => {};
 

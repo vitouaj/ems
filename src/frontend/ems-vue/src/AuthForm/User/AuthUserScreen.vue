@@ -111,12 +111,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import Card from "@/components/emsCard.vue";
 import TextField from "@/components/emsTextfield.vue";
 import ButtonCard from "@/components/emsCard.vue";
+import { useRouter } from "vue-router";
 
-const mode = ref("login");
+const router = useRouter();
+
+const mode = ref(router.currentRoute.value.params.mode || "login");
 const loginData = ref({
   email: "",
   password: "",
@@ -131,14 +134,24 @@ const signupData = ref({
 const rememberMe = ref(false);
 const register = ref(false);
 const terms = ref(false);
+const showPassword = ref(false);
 
 const login = () => {};
 
 const signup = () => {};
 
 const toggleMode = () => {
-  mode.value = mode.value === "login" ? "signup" : "login";
+  if (mode.value === "login") {
+    router.push({ name: "authUser", params: { mode: "signup" } });
+  } else {
+    router.push({ name: "authUser", params: { mode: "login" } });
+  }
 };
+onMounted(() => {
+  if (!router.currentRoute.value.params.mode) {
+    router.replace({ name: "authUser", params: { mode: "login" } });
+  }
+});
 </script>
 
 <style scoped>
