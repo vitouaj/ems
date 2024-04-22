@@ -1,6 +1,6 @@
 <template>
   <div class="center-container">
-    <Card class="Card">
+    <Card :class="mode === 'login' ? 'Card-login' : 'Card-signup'">
       <h1 class="title">
         <span class="Event">Event</span>
         <span class="Hub">hub</span>
@@ -103,22 +103,26 @@
                   >I agree to the term <a href="#" style="bold">Eventhub</a></label
                 >
               </div>
-              <div>
-                <ButtonCard type="submit" class="ButtonCard">Sign Up</ButtonCard>
+            </div>
+            <div class="form-column">
+              <div class="profile-upload">
+                <FileUpload :onFileChange="handleProfilePictureChange" />
               </div>
+              <TextField
+                id="orgName"
+                label="Organization Name"
+                v-model="signupData.orgName"
+                required
+              />
+              <TextField
+                id="lineBusiness"
+                label="Line of Business"
+                v-model="signupData.lineBusiness"
+                required
+              />
             </div>
           </form>
-        </div>
-        <div v-col="6">
-          <div class="form-group">
-            <TextField
-              id="confirm-password"
-              label="Confirm Password"
-              v-model="signupData.password"
-              type="password"
-              required
-            />
-          </div>
+          <ButtonCard type="submit" class="ButtonCard">Sign Up</ButtonCard>
         </div>
         <div class="center">
           <span
@@ -135,8 +139,9 @@ import { ref } from "vue";
 import Card from "@/components/emsCard.vue";
 import TextField from "@/components/emsTextfield.vue";
 import ButtonCard from "@/components/emsCard.vue";
+import FileUpload from "@/components/emsFileUpload.vue";
 
-const mode = ref("login"); // Default mode is login
+const mode = ref("login");
 const loginData = ref({
   email: "",
   password: "",
@@ -144,19 +149,21 @@ const loginData = ref({
 const signupData = ref({
   name: "",
   email: "",
-  phoneNumber: "",
+  phoneNumber: "+855",
   password: "",
+  orgName: "",
+  lineBusiness: "",
+  profilePicture: null as File | null,
 });
 const rememberMe = ref(false);
 const register = ref(false);
 const terms = ref(false);
 
-const login = () => {
-  // Your login logic here
-};
+const login = () => {};
 
-const signup = () => {
-  // Your signup logic here
+const signup = () => {};
+const handleProfilePictureChange = (file: File) => {
+  signupData.value.profilePicture = file;
 };
 
 const toggleMode = () => {
@@ -170,14 +177,25 @@ const toggleMode = () => {
   display: flex;
   align-items: center;
   height: 100vh;
+  justify-content: center;
 }
+
 .Card {
   border-radius: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  margin: 20px auto;
+  margin: 30px auto;
   width: 50%;
   color: #004b8d;
+}
+
+.Card-login {
+  width: 30%;
+}
+
+.Card-signup {
+  width: 50%;
+  margin: 10px 10px;
 }
 
 .form-row {
@@ -257,7 +275,7 @@ const toggleMode = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .checkbox {
@@ -277,5 +295,7 @@ const toggleMode = () => {
   display: flex;
   flex-direction: column;
 }
+.profile-upload {
+  margin-bottom: 10px;
+}
 </style>
-@/components/emsTextfield.vue

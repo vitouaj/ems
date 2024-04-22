@@ -7,9 +7,7 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
 
-const props = defineProps<{
-  // You can define props for the card component here
-}>();
+const props = defineProps<{}>();
 </script>
 
 <style scoped>
