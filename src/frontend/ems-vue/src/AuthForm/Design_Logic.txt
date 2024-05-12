@@ -1,0 +1,10 @@
+1.Component Structure: Create a Vue component (e.g., AuthForm.vue) that will serve as the login and sign-up screen. This component
+ will contain both login and sign-up forms, and you'll switch between them based on the current mode.
+
+2.Define Modes: Define a reactive variable to track the current mode (login or sign-up) in your component's script section.
+
+3.Conditional Rendering: Use Vue's conditional rendering directives (v-if or v-show) to conditionally display different form
+ elements based on the current mode.
+ 
+4.Toggle Mode: Implement functionality to toggle between the login and sign-up modes. You can achieve this by adding a click event
+ handler to the "Sign Up" or "Log In" link/button, which will update the mode variable accordingly.

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EventAPI.Abstactions;
 using EventAPI.Data;
 using EventAPI.Models;
 using EventAPI.Services;
@@ -9,17 +10,18 @@ public static class DependencyInjections
 {
     public static IServiceCollection AddDefaultServices(this IServiceCollection services)
     {
+        services.AddDbContext<AppDbContext>();
+        services.AddDateOnlyTimeOnlyStringConverters();
+        
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(c => c.UseDateOnlyTimeOnlyStringConverters());
 
-        services.AddDbContext<AppDbContext>();
-        services.AddDateOnlyTimeOnlyStringConverters();
 
 
         services.AddAutoMapper(typeof(DependencyInjections));
 
         services.AddScoped<IEventRepository, EventRepository>();
-
+        services.AddScoped<ISessionRepository, SessionRepository>();
 
         return services;
     }

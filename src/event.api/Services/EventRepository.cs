@@ -2,6 +2,7 @@
 using EventAPI.Data;
 using EventAPI.Exceptions;
 using EventAPI.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventAPI.Services;
@@ -51,8 +52,9 @@ public class EventRepository(IMapper mapper, ILogger<Event> logger, AppDbContext
         return true;
     }
 
-    public async Task<List<object>?> GetAll()
+    public async Task<List<object>?> GetAll(int pageSize, int pageIndex)
     {
+        pageIndex = pageIndex == 1 ? 0 : pageIndex; 
         var events = await _db.Events
             .Include(e => e.Sessions)
             .Select(e => new
@@ -89,6 +91,8 @@ public class EventRepository(IMapper mapper, ILogger<Event> logger, AppDbContext
                     s.UpdatedAt
                 }).ToList()
             })
+            .Skip(pageSize * pageIndex)
+            .Take(pageSize)
             .ToListAsync();
 
         var eventsAsObjects = events.Select(e => (object)e).ToList();

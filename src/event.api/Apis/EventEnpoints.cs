@@ -9,12 +9,11 @@ public static class EventEnpoints
 {
     public static void MapEventEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/", GetAll);
+        app.MapGet("/{pageSize}/{pageIndex}", GetAll);
         app.MapGet("/{id}", GetById);
         app.MapDelete("/{id}", Delete);
         app.MapPost("/", CreateNewEvent);
         app.MapPut("/", Update);
-
     }
 
     private static async Task<IResult> Delete(IEventRepository repository, Guid id)
@@ -44,17 +43,20 @@ public static class EventEnpoints
         }
     }
 
-    private static async Task<IResult> GetAll(IEventRepository repository)
+    private static async Task<IResult> GetAll([FromServices] IEventRepository repository, int pageSize = 10, int pageIndex = 1)
     {
-        return Results.Ok(await repository.GetAll());
+        return Results.Ok(await repository.GetAll(pageSize, pageIndex));
     }
 
     private static async Task<IResult> CreateNewEvent([FromServices] IEventRepository repository, [FromBody] EventDto eventDto)
     {
-        var newEvent = await repository.Create(eventDto);
-        if (newEvent == null)
-            return Results.BadRequest(new EventResponse(false, "failed to create event", null));
-        return Results.Created("/event", new EventResponse(true, "Success", newEvent));
+        try {
+            var newEvent = await repository.Create(eventDto);
+            return Results.Created("/event", new EventResponse(true, "Success", newEvent));
+
+        } catch (Exception e) {
+            return Results.BadRequest(new EventResponse(false, e.Message, null));
+        }
     }
 
     private static async Task<IResult> GetById([FromServices] IEventRepository repository, [FromRoute] Guid id)
