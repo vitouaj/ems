@@ -8,7 +8,7 @@
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
-  name: "DefaultButton",
+  name: "emsBtn",
   setup() {
     const isActive = ref(false);
 
@@ -30,6 +30,8 @@ button {
   padding: 8px 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  display: block;
+  width: 100%;
 }
 
 button:hover {
