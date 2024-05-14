@@ -1,8 +1,8 @@
 <template>
   <div class="center-container">
-    <Card class="Card">
+    <emsCard class="Card">
       <h1 class="title">
-        <span class="Event">Event</span>
+        <span class="Event">Even</span>
         <span class="Hub">hub</span>
       </h1>
       <template v-if="mode === 'login'">
@@ -11,30 +11,20 @@
         </div>
         <form @submit.prevent="login">
           <div class="form-group">
-            <TextField
+            <emsTextField
               id="email"
               label="Email"
               v-model="loginData.email"
               type="email"
               required
-              class="TextField input"
             />
           </div>
           <div class="form-group">
-            <TextField
+            <emsTextField
               id="password"
               label="Password"
               v-model="loginData.password"
               type="password"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <TextField
-              id="phoneNumber"
-              label="Phone Number"
-              v-model="signupData.phoneNumber"
-              type="tel"
               required
             />
           </div>
@@ -45,7 +35,7 @@
               <label for="rememberMe">Remember me</label>
             </div>
           </div>
-          <ButtonCard type="submit" class="ButtonCard">Log In</ButtonCard>
+          <emsBtn type="submit" class="ButtonCard">Log In</emsBtn>
         </form>
         <p class="center">
           Don't have an account? <a href="#" @click="toggleMode">Register</a>
@@ -57,10 +47,15 @@
         </div>
         <form @submit.prevent="signup">
           <div class="form-group">
-            <TextField id="name" label="Full Name" v-model="signupData.name" required />
+            <emsTextField
+              id="name"
+              label="Full Name"
+              v-model="signupData.name"
+              required
+            />
           </div>
           <div class="form-group">
-            <TextField
+            <emsTextField
               id="email"
               label="Email"
               v-model="signupData.email"
@@ -69,7 +64,7 @@
             />
           </div>
           <div class="form-group">
-            <TextField
+            <emsTextField
               id="password"
               label="Password"
               v-model="signupData.password"
@@ -80,7 +75,7 @@
             />
           </div>
           <div class="form-group">
-            <TextField
+            <emsTextField
               id="confirm-password"
               label="Confirm Password"
               v-model="signupData.password"
@@ -94,27 +89,25 @@
           </div>
           <div class="checkbox">
             <input type="checkbox" id="terms" v-model="terms" />
-            <label for="terms"
-              >I agree to the term <a href="#" style="bold">Eventhub</a></label
-            >
+            <label for="terms">I agree to the terms <a href="#">Eventhub</a></label>
           </div>
           <div>
-            <ButtonCard type="submit" class="ButtonCard">Sign Up</ButtonCard>
+            <emsBtn type="submit" class="ButtonCard">Sign Up</emsBtn>
           </div>
         </form>
         <div class="center">
           <span>Already have an account? <a href="#" @click="toggleMode">Log In</a></span>
         </div>
       </template>
-    </Card>
+    </emsCard>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import Card from "@/components/emsCard.vue";
-import TextField from "@/components/emsTextfield.vue";
-import ButtonCard from "@/components/emsCard.vue";
+import emsCard from "./../../components/emsCard.vue";
+import emsBtn from "./../../components/emsBtn.vue";
+import emsTextField from "./../../components/emsTextField.vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -129,7 +122,6 @@ const signupData = ref({
   email: "",
   phoneNumber: "",
   password: "",
-  showPassword: false,
 });
 const rememberMe = ref(false);
 const register = ref(false);
@@ -147,6 +139,7 @@ const toggleMode = () => {
     router.push({ name: "authUser", params: { mode: "login" } });
   }
 };
+
 onMounted(() => {
   if (!router.currentRoute.value.params.mode) {
     router.replace({ name: "authUser", params: { mode: "login" } });
@@ -170,19 +163,8 @@ onMounted(() => {
   color: #004b8d;
 }
 
-.form-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-
 .form-group {
-  flex: 1;
-  margin-right: 15px;
-}
-
-.TextField label {
-  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .TextField input {
@@ -197,15 +179,10 @@ onMounted(() => {
   color: white;
   border: none;
   border-radius: 50px;
-  margin-bottom: 10px;
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50%;
 }
 
 .ButtonCard:hover {
@@ -257,4 +234,3 @@ onMounted(() => {
   font-size: 15px;
 }
 </style>
-@/components/emsTextfield.vue

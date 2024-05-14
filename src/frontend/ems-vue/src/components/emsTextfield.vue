@@ -2,37 +2,63 @@
   <div class="text-field">
     <label :for="id">{{ label }}</label>
     <input :type="type" :id="id" v-model="inputValue" @input="handleChange" />
-    <span v-if="type === 'password'" class="toggle-icon" @click="toggleVisibility">
-      <i class="material-icons">{{ showPassword ? "visibility_off" : "visibility" }}</i>
-    </span>
     <p v-if="error" class="error">{{ error }}</p>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from "vue";
+<script lang="ts">
+import { defineComponent, ref, watch } from "vue";
+import type { PropType } from "vue";
 
-const props = defineProps<{
-  id: string;
-  label: string;
-  type?: string;
-  value?: string;
-  validator?: (value: string) => string | null;
-}>();
+export default defineComponent({
+  name: "emsTextField",
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+    label: {
+      type: String,
+      required: true,
+    },
+    type: {
+      type: String,
+      default: "text",
+    },
+    value: {
+      type: String,
+      default: "",
+    },
+    validator: {
+      type: Function as PropType<(value: string) => string | null>,
+      default: null,
+    },
+  },
+  emits: ["update:value"],
+  setup(props, { emit }) {
+    const inputValue = ref(props.value);
+    const error = ref<string | null>(null);
 
-const inputValue = ref(props.value || "");
-const error = ref<string | null>(null);
-const showPassword = ref(false);
+    watch(inputValue, (newValue) => {
+      emit("update:value", newValue);
+      if (props.validator) {
+        error.value = props.validator(newValue);
+      }
+    });
 
-const handleChange = () => {
-  if (props.validator) {
-    error.value = props.validator(inputValue.value);
-  }
-};
+    const handleChange = () => {
+      if (props.validator) {
+        error.value = props.validator(inputValue.value);
+      }
+    };
 
-const toggleVisibility = () => {
-  showPassword.value = !showPassword.value;
-};
+    return {
+      inputValue,
+      error,
+      handleChange,
+    };
+  },
+});
 </script>
 
 <style scoped>
@@ -52,14 +78,6 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
-}
-
-.toggle-icon {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer;
 }
 
 .error {

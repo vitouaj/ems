@@ -4,10 +4,13 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { defineProps } from "vue";
+<script lang="ts">
+import { defineComponent } from "vue";
 
-const props = defineProps<{}>();
+export default defineComponent({
+  name: "emsCard",
+  setup() {},
+});
 </script>
 
 <style scoped>

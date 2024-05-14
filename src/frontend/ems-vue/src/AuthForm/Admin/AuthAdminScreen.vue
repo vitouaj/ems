@@ -1,6 +1,6 @@
 <template>
   <div class="center-container">
-    <Card :class="mode === 'login' ? 'Card-login' : 'Card-signup'">
+    <emsCard :class="mode === 'login' ? 'Card-login' : 'Card-signup'">
       <h1 class="title">
         <span class="Event">Event</span>
         <span class="Hub">hub</span>
@@ -11,7 +11,7 @@
         </div>
         <form @submit.prevent="login">
           <div class="form-group">
-            <TextField
+            <emsTextField
               id="email"
               label="Email"
               v-model="loginData.email"
@@ -21,7 +21,7 @@
             />
           </div>
           <div class="form-group">
-            <TextField
+            <emsTextField
               id="password"
               label="Password"
               v-model="loginData.password"
@@ -30,7 +30,7 @@
             />
           </div>
           <div class="form-group">
-            <TextField
+            <emsTextField
               id="phoneNumber"
               label="Phone Number"
               v-model="signupData.phoneNumber"
@@ -45,7 +45,7 @@
               <label for="rememberMe">Remember me</label>
             </div>
           </div>
-          <ButtonCard type="submit" class="ButtonCard">Log In as an admin</ButtonCard>
+          <emsBtn type="submit" class="ButtonCard">Log In as an admin</emsBtn>
         </form>
         <p class="center">
           Don't have an account? <a href="#" @click="toggleMode">Register</a>
@@ -59,7 +59,7 @@
           <form @submit.prevent="signup" class="signup-form">
             <div class="form-column">
               <div class="form-group">
-                <TextField
+                <emsTextField
                   id="name"
                   label="Full Name"
                   v-model="signupData.name"
@@ -67,7 +67,7 @@
                 />
               </div>
               <div class="form-group">
-                <TextField
+                <emsTextField
                   id="email"
                   label="Email"
                   v-model="signupData.email"
@@ -76,7 +76,7 @@
                 />
               </div>
               <div class="form-group">
-                <TextField
+                <emsTextField
                   id="password"
                   label="Password"
                   v-model="signupData.password"
@@ -87,7 +87,7 @@
                 />
               </div>
               <div class="form-group">
-                <TextField
+                <emsTextField
                   id="confirm-password"
                   label="Confirm Password"
                   v-model="signupData.password"
@@ -110,15 +110,15 @@
             </div>
             <div class="form-column">
               <div class="profile-upload">
-                <FileUpload :onFileChange="handleProfilePictureChange" />
+                <emsFileUpload :onFileChange="handleProfilePictureChange" />
               </div>
-              <TextField
+              <emsTextField
                 id="orgName"
                 label="Organization Name"
                 v-model="signupData.orgName"
                 required
               />
-              <TextField
+              <emsTextField
                 id="lineBusiness"
                 label="Line of Business"
                 v-model="signupData.lineBusiness"
@@ -126,7 +126,7 @@
               />
             </div>
           </form>
-          <ButtonCard type="submit" class="ButtonCard">Sign Up</ButtonCard>
+          <emsBtn type="submit" class="ButtonCard">Sign Up</emsBtn>
         </div>
         <div class="center">
           <span
@@ -134,16 +134,16 @@
           >
         </div>
       </template>
-    </Card>
+    </emsCard>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import Card from "@/components/emsCard.vue";
-import TextField from "@/components/emsTextfield.vue";
-import ButtonCard from "@/components/emsCard.vue";
-import FileUpload from "@/components/emsFileUpload.vue";
+import emsFileUpload from "../../components/emsFileUpload.vue";
+import emsCard from "./../../components/emsCard.vue";
+import emsBtn from "./../../components/emsBtn.vue";
+import emsTextField from "./../../components/emsTextField.vue";
 
 const mode = ref("login");
 const loginData = ref({
@@ -200,7 +200,6 @@ const toggleMode = () => {
 
 .Card-signup {
   width: 50%;
-  margin: 10px 10px;
 }
 
 .form-row {
@@ -299,6 +298,7 @@ const toggleMode = () => {
 .form-column {
   display: flex;
   flex-direction: column;
+  margin: 20px 20px;
 }
 .profile-upload {
   margin-bottom: 10px;
