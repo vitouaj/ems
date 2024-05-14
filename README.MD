@@ -27,4 +27,27 @@ _Below is how you setup development._
 
 ### Version 2 Planning
 
+
+### Backend
+
+
+
+1. run docker compose ( to fire database and pgadmin4 )
+
+   go to src
+
+   ```sh
+      docker compose up
+    ```
+
+2. go to event.api folder, then run 
+
+``` dotnet ef database update ```
+
+3. then run
+
+``` dotnet watch ```
+
+   
+
 1. Change Implementation of Guid to Manageble Id like "E-20239023" from datetime.
