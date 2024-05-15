@@ -11,7 +11,7 @@
         </div>
         <form @submit.prevent="login">
           <div class="form-group">
-            <emsTextField
+            <emsTextfield
               id="email"
               label="Email"
               v-model="loginData.email"
@@ -21,7 +21,7 @@
             />
           </div>
           <div class="form-group">
-            <emsTextField
+            <emsTextfield
               id="password"
               label="Password"
               v-model="loginData.password"
@@ -30,7 +30,7 @@
             />
           </div>
           <div class="form-group">
-            <emsTextField
+            <emsTextfield
               id="phoneNumber"
               label="Phone Number"
               v-model="signupData.phoneNumber"
@@ -59,7 +59,7 @@
           <form @submit.prevent="signup" class="signup-form">
             <div class="form-column">
               <div class="form-group">
-                <emsTextField
+                <emsTextfield
                   id="name"
                   label="Full Name"
                   v-model="signupData.name"
@@ -67,7 +67,7 @@
                 />
               </div>
               <div class="form-group">
-                <emsTextField
+                <emsTextfield
                   id="email"
                   label="Email"
                   v-model="signupData.email"
@@ -76,7 +76,7 @@
                 />
               </div>
               <div class="form-group">
-                <emsTextField
+                <emsTextfield
                   id="password"
                   label="Password"
                   v-model="signupData.password"
@@ -87,7 +87,7 @@
                 />
               </div>
               <div class="form-group">
-                <emsTextField
+                <emsTextfield
                   id="confirm-password"
                   label="Confirm Password"
                   v-model="signupData.password"
@@ -112,13 +112,13 @@
               <div class="profile-upload">
                 <emsFileUpload :onFileChange="handleProfilePictureChange" />
               </div>
-              <emsTextField
+              <emsTextfield
                 id="orgName"
                 label="Organization Name"
                 v-model="signupData.orgName"
                 required
               />
-              <emsTextField
+              <emsTextfield
                 id="lineBusiness"
                 label="Line of Business"
                 v-model="signupData.lineBusiness"
@@ -139,11 +139,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { useRouter } from "vue-router";
 import emsFileUpload from "../../components/emsFileUpload.vue";
 import emsCard from "./../../components/emsCard.vue";
 import emsBtn from "./../../components/emsBtn.vue";
-import emsTextField from "./../../components/emsTextField.vue";
+import emsTextfield from "./../../components/emsTextfield.vue";
+const router = useRouter();
 
 const mode = ref("login");
 const loginData = ref({
@@ -174,6 +176,14 @@ const handleProfilePictureChange = (file: File) => {
 const toggleMode = () => {
   mode.value = mode.value === "login" ? "signup" : "login";
 };
+
+watch(
+  mode,
+  (newValue) => {
+    router.replace({ name: "authAdmin", params: { mode: newValue } });
+  },
+  { immediate: true }
+);
 </script>
 
 <style scoped>
@@ -189,17 +199,19 @@ const toggleMode = () => {
   border-radius: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  margin: 30px auto;
-  width: 50%;
+  margin: 20px auto;
+  width: 30%;
   color: #004b8d;
 }
 
 .Card-login {
   width: 30%;
+  border-radius: 30px;
 }
 
 .Card-signup {
   width: 50%;
+  border-radius: 30px;
 }
 
 .form-row {

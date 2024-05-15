@@ -8,7 +8,7 @@ const routes = [
     component: () => import('../AuthForm/User/AuthUserScreen.vue')
   },
   {
-    path: '/authAdmin',
+    path: '/authAdmin/:mode',
     name: 'authAdmin',
     component: () => import('../AuthForm/Admin/AuthAdminScreen.vue')
   },
