@@ -11,7 +11,7 @@ import { defineComponent, ref, watch } from "vue";
 import type { PropType } from "vue";
 
 export default defineComponent({
-  name: "emsTextField",
+  name: "emsTextfield",
   props: {
     id: {
       type: String,

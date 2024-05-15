@@ -11,7 +11,7 @@
         </div>
         <form @submit.prevent="login">
           <div class="form-group">
-            <emsTextField
+            <emsTextfield
               id="email"
               label="Email"
               v-model="loginData.email"
@@ -20,7 +20,7 @@
             />
           </div>
           <div class="form-group">
-            <emsTextField
+            <emsTextfield
               id="password"
               label="Password"
               v-model="loginData.password"
@@ -41,13 +41,13 @@
           Don't have an account? <a href="#" @click="toggleMode">Register</a>
         </p>
       </template>
-      <template v-else>
+      <template v-else-if="mode === 'signup'">
         <div class="center">
           <span>Register a new account</span>
         </div>
         <form @submit.prevent="signup">
           <div class="form-group">
-            <emsTextField
+            <emsTextfield
               id="name"
               label="Full Name"
               v-model="signupData.name"
@@ -55,7 +55,7 @@
             />
           </div>
           <div class="form-group">
-            <emsTextField
+            <emsTextfield
               id="email"
               label="Email"
               v-model="signupData.email"
@@ -64,7 +64,7 @@
             />
           </div>
           <div class="form-group">
-            <emsTextField
+            <emsTextfield
               id="password"
               label="Password"
               v-model="signupData.password"
@@ -75,7 +75,7 @@
             />
           </div>
           <div class="form-group">
-            <emsTextField
+            <emsTextfield
               id="confirm-password"
               label="Confirm Password"
               v-model="signupData.password"
@@ -107,7 +107,7 @@
 import { ref, onMounted } from "vue";
 import emsCard from "./../../components/emsCard.vue";
 import emsBtn from "./../../components/emsBtn.vue";
-import emsTextField from "./../../components/emsTextField.vue";
+import emsTextfield from "./../../components/emsTextfield.vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -135,14 +135,16 @@ const signup = () => {};
 const toggleMode = () => {
   if (mode.value === "login") {
     router.push({ name: "authUser", params: { mode: "signup" } });
+    mode.value = "signup";
   } else {
     router.push({ name: "authUser", params: { mode: "login" } });
+    mode.value = "login";
   }
 };
 
 onMounted(() => {
   if (!router.currentRoute.value.params.mode) {
-    router.replace({ name: "authUser", params: { mode: "login" } });
+    router.replace({ name: "authUser", params: { mode: "signup" } });
   }
 });
 </script>
