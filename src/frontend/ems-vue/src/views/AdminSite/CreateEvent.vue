@@ -36,7 +36,7 @@
             </v-col>
             <v-col cols="6">
               <label for="Participator" class="labelText">Participator</label><br />
-              <v-text-field v-model="newEvent.participators" variant="solo" density="compact" placeholder="start Date"></v-text-field>
+              <v-text-field v-model="newEvent.participators" variant="solo" density="compact" placeholder="Total participator"></v-text-field>
             </v-col>
             <v-col cols="12">
               <label for="Image" class="labelText">Image</label><br />
@@ -70,6 +70,7 @@
           author: null,
           tag: null,
           participators: null,
+          t_participators: null,
           time: null,
           start_date: null,
           end_date: null,
