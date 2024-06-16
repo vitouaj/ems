@@ -1,17 +1,17 @@
 <template>
   <div>
-    <v-row>
+    <v-row v-if="event">
       <v-col cols="12" class="d-flex align-start">
         <div>
-          <h2 class="font-weight-bold text-uppercase">RUPP Business Class Meeting</h2>
-          <p class="text-caption">by: RUPP group</p>
+          <h2 class="font-weight-bold text-uppercase">{{ event.name }}</h2>
+          <p class="text-caption">by: {{ event.createdBy }}</p>
         </div>
         <div class="pt-1">
           <v-chip class="rounded-lg mx-1" size="x-small" variant="elevated" color="#7CB518">
-            <v-icon size="small">mdi-alarm</v-icon><span>start at {{ e_Time }}</span>
+            <v-icon size="small">mdi-alarm</v-icon><span>start at {{ event.startedDate }}</span>
           </v-chip>
           <v-chip class="rounded-lg mx-1" size="x-small" variant="elevated" color="#FF7F00">
-            <p>{{ e_tag }}</p>
+            <p>{{ event.category.name }}</p>
           </v-chip>
         </div>
       </v-col>
@@ -60,7 +60,7 @@
             >
               <v-icon size="x-large" color="#004B8D"> mdi-account-group-outline </v-icon>
               <p>Participator</p>
-              <p>23/50</p>
+              <p>{{ event.numberOfParticipant }}</p>
             </v-card>
             <v-card
               min-width="110"
@@ -68,7 +68,7 @@
             >
               <v-icon size="x-large" color="#004B8D"> mdi-glasses </v-icon>
               <p>viewers</p>
-              <p>1,020</p>
+              <p>{{ event.numberOfParticipant }}</p>
             </v-card>
             <v-card
               min-width="110"
@@ -82,36 +82,28 @@
           <v-col cols="12">
             <h3 class="font-weight-bold">Description</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi provident laboriosam
-              dicta beatae eaque explicabo veritatis sapiente, tempore sed maiores, quod dolores
-              similique mollitia officia exercitationem sint eos, neque recusandae! Ut, nesciunt
-              vitae eius nemo itaque et eos. Nemo corporis hic dolorem quibusdam, mollitia rem quasi
-              praesentium officia ad vel provident accusantium aliquam iure itaque reiciendis
-              quaerat sint in corrupti!
+              {{ event.description }}
             </p>
           </v-col>
           <v-col cols="6">
             <v-row>
               <v-col cols="12" class="d-flex">
-                <p><span class="font-weight-bold">Start Date: </span>12 Dec 2024</p>
+                <p><span class="font-weight-bold">Start Date: </span>{{ event.startedDate }}</p>
               </v-col>
               <v-col cols="12">
-                <p><span class="font-weight-bold">End Date: </span>15 Dec 2024</p>
+                <p><span class="font-weight-bold">End Date: </span>{{}}</p>
               </v-col>
               <v-col cols="12">
                 <p><span class="font-weight-bold">Time: </span>8:30 AM</p>
               </v-col>
               <v-col cols="12">
-                <p>
-                  <span class="font-weight-bold">Map: </span>Russian Federation Blvd (110), Phnom
-                  Penh 120404
-                </p>
+                <p><span class="font-weight-bold">Map: </span>{{ event.venue.name }}</p>
               </v-col>
             </v-row>
           </v-col>
           <v-col cols="6">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62534.89697091127!2d104.82653816787605!3d11.592585684062556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109519fe4077d69%3A0x20138e822e434660!2sRoyal%20University%20of%20Phnom%20Penh!5e0!3m2!1sen!2skh!4v1715510130198!5m2!1sen!2skh"
+              :src="event.venue.googleMapUrl"
               width="100%"
               height="200"
               style="border: 0"
@@ -137,14 +129,28 @@
   </div>
 </template>
 <script>
+import { useRoute } from 'vue-router'
+import { ref, watch } from 'vue'
+import { onMounted } from 'vue'
+import axios from 'axios'
+
 export default {
-  data() {
+  setup() {
+    const route = useRoute() // 2
+    const event = ref(null) // 3
+
+    async function fetchEventById() {
+      const result = await axios.get(`http://localhost:4001/api/v1/event/${route.params.id}`)
+      event.value = result.data
+      console.log(result.data)
+    }
+
+    onMounted(async () => {
+      await fetchEventById()
+    })
+
     return {
-      e_Time: '8.30',
-      e_Title: 'Event Name sample',
-      e_location: 'event_location',
-      e_participate: 55,
-      e_tag: 'education'
+      event
     }
   }
 }
