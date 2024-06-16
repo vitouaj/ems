@@ -10,7 +10,7 @@
                     All Events
                    </v-card-text>
                    <v-card-text class="d-flex justify-center text-h4">
-                    03
+                    {{ allevents }}
                    </v-card-text>
                 </v-card>
             </v-col>
@@ -42,12 +42,20 @@
             </v-col>
             <v-col cols="12">
                 <v-card height="250" class="dashboardBoard">
-                    <v-card-text>
-                        Event Lists
-                    </v-card-text>
-                    <v-card-item>
-                        <event-list/>
-                    </v-card-item>
+                    <v-row no-gutters>
+                        <v-col cols="12">
+                            <v-card-text>
+                                Event Lists
+                            </v-card-text>
+                        </v-col>
+                        <v-col>
+                            <v-row>
+                            <template v-for="event in eventLists" :key="event.id">
+                                <event-list :event="event" />
+                            </template>
+                            </v-row>
+                        </v-col>
+                    </v-row>
                 </v-card>
             </v-col>
         </v-row>
@@ -55,12 +63,28 @@
 </template>
 
 <script>
+import axios from 'axios';
 import EventList from './components/EventList.vue';
 
 export default {
     components: {
         EventList
-    }}
+    },
+    data() {
+      return {
+        eventLists: [],
+        allevents: null
+      };
+    },
+    async mounted() {
+      try {
+        const response = await axios.get(`http://localhost:3001/events`);
+        this.allevents = response.data.length;
+        this.eventLists = response.data
+      } catch (error) {
+        console.error("Error fetching event details:", error);
+      }
+    },}
 </script>
 
 <style>
