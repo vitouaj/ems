@@ -1,0 +1,177 @@
+{
+  "events": [
+    {
+      "id": "xyue0738",
+      "name": "RUPP BUSINESS CLASS MEETING",
+      "author": "Rupp Group",
+      "author_id": "vte73uus",
+      "tag": "education",
+      "participators": "50",
+      "t_participators": "50",
+      "time": "8:00AM",
+      "start_date": "12/Dec/2023",
+      "end_date": "12/Dec/2023",
+      "status": false,
+      "location": "Russian Federation Blvd (110), Phnom Penh 120404",
+      "viewer": 1007,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi provident laboriosam dicta beatae eaque explicabo veritatis sapiente, tempore sed maiores, quod dolores similique mollitia officia exercitationem sint eos, neque recusandae! Ut, nesciunt vitae eius nemo itaque et eos. Nemo corporis hic dolorem quibusdam, mollitia rem quasi praesentium officia ad vel provident accusantium aliquam iure itaque reiciendis quaerat sint in corrupti!",
+      "session": [
+        {
+          "id": "1",
+          "title": "what is BUSINESS ?",
+          "date": "12/Dec/2024",
+          "start_time": "9:00 AM",
+          "end_time": "11:00 AM"
+        },
+        {
+          "id": "2",
+          "title": "Go Deeper about BUSINESS",
+          "date": "12/Dec/2024",
+          "start_time": "1:00 PM",
+          "end_time": "5:00 PM"
+        }
+      ],
+      "image": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-hKTV44lahE6KMIRYC6ppMKNnArXscKNtWA&s",
+        "https://t3.ftcdn.net/jpg/00/83/92/82/360_F_83928200_mYGZqB0ozTtSS6J5EtW9834mjb5tLW6x.jpg",
+        "https://www.shutterstock.com/image-photo/glass-buildings-cloudy-blue-sky-260nw-1570611190.jpg",
+        "https://www.shutterstock.com/image-photo/glass-buildings-cloudy-blue-sky-260nw-1570611190.jpg"
+      ]
+    },
+    {
+      "id": "xhzt8347",
+      "name": "Digital Marketing Workshop",
+      "author": "Digital Experts Group",
+      "author_id": "yhgada66",
+      "tag": "education",
+      "participators": "30",
+      "t_participators": "150",
+      "time": "9:00 AM",
+      "start_date": "15/Dec/2024",
+      "end_date": "15/Dec/2024",
+      "status": true,
+      "location": "TechHub Center, Silicon Valley, CA",
+      "viewer": 120,
+      "description": "A comprehensive workshop covering digital marketing strategies, SEO, social media marketing, and more.",
+      "session": [
+        {
+          "id": "1",
+          "title": "Introduction to Digital Marketing",
+          "date": "15/Dec/2024",
+          "start_time": "9:00 AM",
+          "end_time": "11:00 AM"
+        },
+        {
+          "id": "2",
+          "title": "Advanced Strategies in SEO",
+          "date": "15/Dec/2024",
+          "start_time": "1:00 PM",
+          "end_time": "3:00 PM"
+        },
+        {
+          "id": "3",
+          "title": "Social Media Marketing Trends",
+          "date": "15/Dec/2024",
+          "start_time": "3:30 PM",
+          "end_time": "5:00 PM"
+        }
+      ],
+      "image": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-hKTV44lahE6KMIRYC6ppMKNnArXscKNtWA&s",
+        "https://t3.ftcdn.net/jpg/00/83/92/82/360_F_83928200_mYGZqB0ozTtSS6J5EtW9834mjb5tLW6x.jpg",
+        "https://www.shutterstock.com/image-photo/glass-buildings-cloudy-blue-sky-260nw-1570611190.jpg",
+        "https://www.shutterstock.com/image-photo/glass-buildings-cloudy-blue-sky-260nw-1570611190.jpg"
+      ]
+    },
+    {
+      "id": "sqrf2039",
+      "name": "Leadership Summit 2024",
+      "author": "Executive Minds Forum",
+      "author_id": "gjas7ds3",
+      "tag": "leadership",
+      "participators": "10",
+      "t_participators": "50",
+      "time": "10:00 AM",
+      "start_date": "18/April/2024",
+      "end_date": "18/aprile/2024",
+      "status": false,
+      "location": "Grand Conference Hall, New York City, NY",
+      "viewer": 500,
+      "description": "Join top executives and thought leaders for a day of insights on effective leadership in the modern business landscape.",
+      "session": [
+        {
+          "id": "1",
+          "title": "Keynote Address: Future Trends in Leadership",
+          "date": "18/Dec/2024",
+          "start_time": "10:00 AM",
+          "end_time": "11:30 AM"
+        },
+        {
+          "id": "2",
+          "title": "Panel Discussion: Challenges and Solutions in Leadership",
+          "date": "18/Dec/2024",
+          "start_time": "12:00 PM",
+          "end_time": "2:00 PM"
+        },
+        {
+          "id": "3",
+          "title": "Workshop: Developing Emotional Intelligence as a Leader",
+          "date": "18/Dec/2024",
+          "start_time": "2:30 PM",
+          "end_time": "4:30 PM"
+        }
+      ],
+      "image": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-hKTV44lahE6KMIRYC6ppMKNnArXscKNtWA&s",
+        "https://t3.ftcdn.net/jpg/00/83/92/82/360_F_83928200_mYGZqB0ozTtSS6J5EtW9834mjb5tLW6x.jpg",
+        "https://www.shutterstock.com/image-photo/glass-buildings-cloudy-blue-sky-260nw-1570611190.jpg",
+        "https://www.shutterstock.com/image-photo/glass-buildings-cloudy-blue-sky-260nw-1570611190.jpg"
+      ]
+    },
+    {
+      "id": "ajzt7321",
+      "name": "Tech Innovations Conference",
+      "author": "FutureTech Solutions",
+      "author_id": "67hhdd6q",
+      "tag": "technology",
+      "participators": "100",
+      "t_participators": "150",
+      "time": "9:30 AM",
+      "start_date": "28/july/2024",
+      "end_date": "30/july/2024",
+      "status": true,
+      "location": "Innovation Hub, San Francisco, CA",
+      "viewer": 800,
+      "description": "Explore cutting-edge technologies and their impact on industries such as AI, IoT, and blockchain.",
+      "session": [
+        {
+          "id": "1",
+          "title": "Keynote: The Future of AI",
+          "date": "20/Dec/2024",
+          "start_time": "9:30 AM",
+          "end_time": "11:00 AM"
+        },
+        {
+          "id": "2",
+          "title": "Panel: Blockchain Applications in Business",
+          "date": "20/Dec/2024",
+          "start_time": "11:30 AM",
+          "end_time": "1:00 PM"
+        },
+        {
+          "id": "3",
+          "title": "Workshop: IoT Innovations and Security Challenges",
+          "date": "20/Dec/2024",
+          "start_time": "2:00 PM",
+          "end_time": "4:00 PM"
+        }
+      ],
+      "image": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-hKTV44lahE6KMIRYC6ppMKNnArXscKNtWA&s",
+        "https://t3.ftcdn.net/jpg/00/83/92/82/360_F_83928200_mYGZqB0ozTtSS6J5EtW9834mjb5tLW6x.jpg",
+        "https://www.shutterstock.com/image-photo/glass-buildings-cloudy-blue-sky-260nw-1570611190.jpg",
+        "https://www.shutterstock.com/image-photo/glass-buildings-cloudy-blue-sky-260nw-1570611190.jpg"
+      ]
+    }
+  ]
+}
