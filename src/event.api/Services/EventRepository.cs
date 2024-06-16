@@ -172,4 +172,26 @@ public class EventRepository(IMapper mapper, ILogger<Event> logger, AppDbContext
     {
         throw new NotImplementedException();
     }
+
+    public async Task<object?> GetCategoryOptions()
+    {
+        var categoryOptions = await _db.Categories.Select(c => new
+        {
+            c.Id,
+            c.Name
+        })
+        .ToListAsync();
+        return categoryOptions;
+    }
+
+    public async Task<object?> GetVenueOptions()
+    {
+        var venue = await _db.Venues.Select(c => new
+        {
+            c.Id,
+            c.Name
+        })
+        .ToListAsync();
+        return venue;
+    }
 }

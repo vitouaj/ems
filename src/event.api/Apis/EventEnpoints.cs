@@ -14,6 +14,22 @@ public static class EventEnpoints
         app.MapDelete("/{id}", Delete);
         app.MapPost("/", CreateNewEvent);
         app.MapPut("/", Update);
+        app.MapGet("/category", GetCategoryOptions);
+        app.MapGet("/venue", GetVenueOptions);
+
+    }
+    private static async Task<IResult> GetVenueOptions(IEventRepository repository)
+    {
+        var result = await repository.GetVenueOptions();
+        return result != null ? Results.Ok(result) : Results.BadRequest();
+    }
+
+
+    private static async Task<IResult> GetCategoryOptions(IEventRepository repository)
+    {
+        var result = await repository.GetCategoryOptions();
+
+        return result != null ? Results.Ok(result) : Results.BadRequest();
     }
 
     private static async Task<IResult> Delete(IEventRepository repository, Guid id)
@@ -50,11 +66,14 @@ public static class EventEnpoints
 
     private static async Task<IResult> CreateNewEvent([FromServices] IEventRepository repository, [FromBody] EventDto eventDto)
     {
-        try {
+        try
+        {
             var newEvent = await repository.Create(eventDto);
             return Results.Created("/event", new EventResponse(true, "Success", newEvent));
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             return Results.BadRequest(new EventResponse(false, e.Message, null));
         }
     }
