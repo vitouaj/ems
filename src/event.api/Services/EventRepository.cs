@@ -54,7 +54,7 @@ public class EventRepository(IMapper mapper, ILogger<Event> logger, AppDbContext
 
     public async Task<List<object>?> GetAll(int pageSize, int pageIndex)
     {
-        pageIndex = pageIndex == 1 ? 0 : pageIndex; 
+        pageIndex = pageIndex == 1 ? 0 : pageIndex;
         var events = await _db.Events
             .Include(e => e.Sessions)
             .Select(e => new
@@ -63,6 +63,7 @@ public class EventRepository(IMapper mapper, ILogger<Event> logger, AppDbContext
                 e.Name,
                 e.Description,
                 e.NumberOfParticipant,
+                e.StartedDate,
                 Category = new
                 {
                     e.CategoryId,
@@ -108,6 +109,7 @@ public class EventRepository(IMapper mapper, ILogger<Event> logger, AppDbContext
                 e.Name,
                 e.Description,
                 e.NumberOfParticipant,
+                e.StartedDate,
                 Category = new
                 {
                     e.CategoryId,

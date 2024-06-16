@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import AppLayout from '../views/Layouts/AppLayout.vue';
+import { createRouter, createWebHistory } from 'vue-router'
+import AppLayout from '../views/Layouts/AppLayout.vue'
 
 const routes = [
   {
@@ -35,7 +35,7 @@ const routes = [
         component: () => import('../views/AdminSite/AllEvents.vue')
       },
       {
-        path: 'detail-screen',
+        path: 'detail-screen/:id',
         component: () => import('../views/AdminSite/DetailScreen.vue')
       }
     ]
@@ -54,12 +54,12 @@ const routes = [
     path: '/authAdmin',
     name: 'authAdmin',
     component: () => import('../AuthForm/Admin/AuthAdminScreen.vue')
-  },
-];
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
-});
+})
 
-export default router;
+export default router
