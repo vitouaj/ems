@@ -114,7 +114,7 @@
             </iframe>
           </v-col>
           <v-col cols="12" class="d-flex justify-end">
-            <v-btn class="mx-2" color="#004B8D">
+            <v-btn @click="deleteEventById" class="mx-2" color="#004B8D">
               <v-icon> mdi-delete </v-icon>
               Delete
             </v-btn>
@@ -139,6 +139,13 @@ export default {
     const route = useRoute() // 2
     const event = ref(null) // 3
 
+    async function deleteEventById() {
+      const result = await axios.delete(`http://localhost:4001/api/v1/event/${route.params.id}`)
+      if (result.data.success === true) {
+        window.location = '/admin/all-events'
+      }
+    }
+
     async function fetchEventById() {
       const result = await axios.get(`http://localhost:4001/api/v1/event/${route.params.id}`)
       event.value = result.data
@@ -150,6 +157,7 @@ export default {
     })
 
     return {
+      deleteEventById,
       event
     }
   }

@@ -60,7 +60,6 @@
 
 <script>
 import axios from 'axios'
-import SessionDiol from './components/SessionDiol.vue'
 import TextField from './components/TextField.vue'
 import { ref, onMounted } from 'vue'
 
@@ -114,13 +113,22 @@ export default {
         numberOfParticipant: participator.value,
         categoryId: selectedCategory.value,
         venueId: selectedVenue.value,
-        startDate: startDate.value,
-        endDate: endDate.value,
-        map: map.value,
-        image: image.value,
-        eventSessions: eventSessions.value
+        startedDate: startDate.value,
+        endedDate: endDate.value
       }
+
       console.log(eventDetails)
+
+      var result = null
+      try {
+        result = await axios.post('http://localhost:4001/api/v1/event', eventDetails)
+      } catch (e) {
+        console.log(e)
+      }
+
+      if (result.data.success === true) {
+        window.location = '/admin/all-events'
+      }
     }
 
     return {
